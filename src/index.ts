@@ -2,6 +2,7 @@ import 'reflect-metadata';
 import fastify, { FastifyInstance } from 'fastify';
 import cors from '@fastify/cors';
 import { AppDataSource } from './db-connection';
+import { createMarketer } from './routes/marketer.routes';
 
 const app: FastifyInstance = fastify({ logger: true });
 
@@ -18,12 +19,21 @@ async function main() {
 
 main();
 
+app.register(require('./routes/marketer.routes'), {
+	// opciones para el plugin
+});
+
 app.register(cors, {
 	origin: '*',
 	methods: ['GET', 'POST'],
 });
 
 app.get('/', (request, reply) => {
-	reply.send({ hello: 'Álvaro' });
+	reply.send({ hello: 'pokemon funciona ya!!' });
 });
 
+
+
+
+
+// app.register(createMarketer);
