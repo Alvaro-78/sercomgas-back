@@ -6,6 +6,7 @@ import {
 	UpdateDateColumn,
 	OneToMany,
 } from 'typeorm';
+// import { Client } from './Client';
 import { Operation } from './Operation';
 
 @Entity()
@@ -16,8 +17,14 @@ export class Marketer {
 	@Column()
 	name: string;
 
+	@Column()
+	password: string;
+
 	@OneToMany(() => Operation, (operation) => operation.marketer)
 	operation: Operation[];
+
+	// @OneToMany(() => Client, (client) => client.marketer)
+	// client: Client[];
 
 	@CreateDateColumn()
 	createdAt: Date;
